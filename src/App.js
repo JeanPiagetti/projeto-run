@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import './App.css';
+import PaginationComponent from './components/pagination/PaginationComponent';
 import { getUsers } from './containers/user/bussiness/UserApi';
 import { UserCard } from './containers/user/view/UserView';
 
@@ -20,19 +21,10 @@ function App() {
 
 
   return (
-    <div className='app'>
-      <div>
-        {Array.from(Array(pages), (value,index) => (
-          <button 
-          className='' 
-          value={index} 
-          onClick={(e) => setCurrentPage(Number(e.target.value))}>
-            {index + 1}
-          </button>)
-        )}
-      </div>
+    <div>
+      <PaginationComponent setCurrentPage={setCurrentPage} currentPage={currentPage} pages={pages}/>
       <UserCard  users={currentUsers}/>
-    </div>
+    </div>    
   )
 }
 
